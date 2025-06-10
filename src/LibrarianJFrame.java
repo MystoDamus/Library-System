@@ -7,6 +7,7 @@
  *
  * @author Cy
  */
+
 import java.sql.*;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -16,15 +17,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class LibrarianJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form StudentJFrame
-     */
-    public LibrarianJFrame() {
+    private MainJFrame mainFrame;
+    public LibrarianJFrame(MainJFrame mainFrame) {
         initComponents();
         Connect();
-        LibData();
+        StudentData();
     }
-    
+    public LibrarianJFrame() {
+    initComponents(); // same as the auto-generated init method
+}
+                                
     Connection con;
     PreparedStatement pst;
     
@@ -34,9 +36,9 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/librarydb","root","");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentJFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -45,11 +47,11 @@ public class LibrarianJFrame extends javax.swing.JFrame {
     
     }
 
-     private void LibData(){
+     private void StudentData(){
     
         try {
             int QQ;
-            pst = con.prepareStatement("SELECT * FROM librarian");
+            pst = con.prepareStatement("SELECT * FROM student");
             ResultSet Rs = pst.executeQuery();
             
             ResultSetMetaData RSMD = Rs.getMetaData();
@@ -66,10 +68,10 @@ public class LibrarianJFrame extends javax.swing.JFrame {
              
             for(int aa=1; aa<=QQ; aa++){
                  
-                v2.add(Rs.getString("LibraryID"));
-                v2.add(Rs.getString("Name"));
-                v2.add(Rs.getString("Email"));
-                v2.add(Rs.getString("Address"));
+                v2.add(Rs.getString("studentid"));
+                v2.add(Rs.getString("studentname"));
+                v2.add(Rs.getString("email"));
+                v2.add(Rs.getString("address"));
              }
              
              DFG.addRow(v2);
@@ -77,7 +79,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         }
           
         } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     
@@ -94,6 +96,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table1 = new javax.swing.JTable();
@@ -101,10 +104,10 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        LibID = new javax.swing.JTextField();
-        LName = new javax.swing.JTextField();
-        LEmail = new javax.swing.JTextField();
-        LAddress = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
         btnInsert = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -116,7 +119,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("LIBRARIAN");
+        jLabel1.setText("Student");
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -128,25 +131,39 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             }
         });
 
+        backButton.setBackground(new java.awt.Color(255, 255, 255));
+        backButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        backButton.setForeground(new java.awt.Color(0, 0, 0));
+        backButton.setText("<");
+        backButton.setToolTipText("");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(194, 194, 194)
+                .addGap(195, 195, 195)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addGap(15, 15, 15))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -156,36 +173,40 @@ public class LibrarianJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "LibID", "Name", "Email", "Address"
+                "StudentId", "StudentName", "Email", "Address"
             }
         ));
         jScrollPane1.setViewportView(table1);
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("LibID");
+        jLabel2.setText("StudentId");
 
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Name");
+        jLabel3.setText("Student Name");
 
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Email");
 
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Address");
 
-        LibID.addActionListener(new java.awt.event.ActionListener() {
+        txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LibIDActionPerformed(evt);
+                txtIdActionPerformed(evt);
             }
         });
 
-        LEmail.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LEmailActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
@@ -203,7 +224,8 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setBackground(new java.awt.Color(0, 0, 102));
+        jLabel6.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -229,18 +251,17 @@ public class LibrarianJFrame extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(LEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                            .addComponent(LName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LibID, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LAddress))
-                        .addGap(57, 57, 57))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtAddress)
+                            .addComponent(txtEmail)
+                            .addComponent(txtName)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
+                        .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -253,19 +274,19 @@ public class LibrarianJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(LibID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(LName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(LEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(LAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,7 +294,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
                                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -288,108 +309,111 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LEmailActionPerformed
-
-    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        try {
-            String librarianID = LibID.getText();
-            String Name = LName.getText();
-            String Email = LEmail.getText();
-            String Address = LAddress.getText();
-            
-            pst = con.prepareStatement("INSERT INTO librarian (ID,name,email,address) VALUES (?,?,?,?)");
-            
-            pst.setString(1,librarianID);
-            pst.setString(2,Name);
-            pst.setString(3,Email);
-            pst.setString(4,Address);
-            
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Record Inserted Successfully");
-            LibData();
-        } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                          
-    }//GEN-LAST:event_btnInsertActionPerformed
-
-    private void LibIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibIDActionPerformed
-        try {
-            String librarianID = LibID.getText();
-            String Name = LName.getText();
-            String Email = LEmail.getText();
-            String Address = LAddress.getText();
-            
-            pst = con.prepareStatement("INSERT INTO librarian (studentid,studentname,email,address)VALUES(?,?,?,?)");
-            
-            pst.setString(1,librarianID);
-            pst.setString(2,Name);
-            pst.setString(3,Email);
-            pst.setString(4,Address);
-            
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Record Inserted Successfully");
-            LibData();
-        } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_LibIDActionPerformed
-                                                                                                                        
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-         try {
-            String librarianID = LibID.getText();
-            String Name = LName.getText();
-            String Email = LEmail.getText();
-            String Address = LAddress.getText();
-            
-            pst = con.prepareStatement("UPDATE librarian SET name = ?, email = ?, address = ? WHERE ID = ?");
-            
-            
-            pst.setString(1,librarianID);
-            pst.setString(2,Name);
-            pst.setString(3,Email);
-            pst.setString(4,Address);
-            
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Record Updated Successfully");
-            LibData();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                      
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try {
-            String LibraryID = LibID.getText();
-            pst = con.prepareStatement("DELETE FROM librarian WHERE LibID=?");
-            pst.setString(1,LibraryID);
-            
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Record Deleted Successfully");
-            LibData();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-          
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        try {
+            String studentid = txtId.getText();
+            pst = con.prepareStatement("DELETE FROM student WHERE studentid=?");
+            pst.setString(1,studentid);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Record Deleted Successfully");
+            StudentData();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        try {
+            String studentid = txtId.getText();
+            String studentname = txtName.getText();
+            String email = txtEmail.getText();
+            String address = txtAddress.getText();
+
+            pst = con.prepareStatement("update student set studentname= ?,email= ?,address= ? where studentid= ?");
+
+            pst.setString(1,studentname);
+            pst.setString(2,email);
+            pst.setString(3,address);
+            pst.setString(4,studentid);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Record Updated Successfully");
+            StudentData();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        try {
+            String studentid = txtId.getText();
+            String studentname = txtName.getText();
+            String email = txtEmail.getText();
+            String address = txtAddress.getText();
+
+            pst = con.prepareStatement("INSERT INTO student (studentid,studentname,email,address)VALUES(?,?,?,?)");
+
+            pst.setString(1,studentid);
+            pst.setString(2,studentname);
+            pst.setString(3,email);
+            pst.setString(4,address);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Record Inserted Successfully");
+            StudentData();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnInsertActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        try {
+            String studentid = txtId.getText();
+            String studentname = txtName.getText();
+            String email = txtEmail.getText();
+            String address = txtAddress.getText();
+
+            pst = con.prepareStatement("INSERT INTO student (studentid,studentname,email,address)VALUES(?,?,?,?)");
+
+            pst.setString(1,studentid);
+            pst.setString(2,studentname);
+            pst.setString(3,email);
+            pst.setString(4,address);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Record Inserted Successfully");
+            StudentData();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtIdActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+         new MainJFrame().setVisible(true);
+    dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -420,18 +444,14 @@ public class LibrarianJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
-                new LibrarianJFrame().setVisible(true);
+                new StudentJFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField LAddress;
-    private javax.swing.JTextField LEmail;
-    private javax.swing.JTextField LName;
-    private javax.swing.JTextField LibID;
+    private javax.swing.JButton backButton;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnUpdate;
@@ -446,5 +466,9 @@ public class LibrarianJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table1;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }
