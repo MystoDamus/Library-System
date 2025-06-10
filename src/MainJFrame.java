@@ -183,9 +183,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    BookJFrame bookFrame = new BookJFrame(this); // pass this main frame
-    bookFrame.setVisible(true);
-    this.setVisible(false); 
+    new BookJFrame(this).setVisible(true);
+this.setVisible(false); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

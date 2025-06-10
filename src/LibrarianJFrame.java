@@ -49,7 +49,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
     
         try {
             int QQ;
-            pst = con.prepareStatement("SELECT * FROM library");
+            pst = con.prepareStatement("SELECT * FROM librarian");
             ResultSet Rs = pst.executeQuery();
             
             ResultSetMetaData RSMD = Rs.getMetaData();
@@ -307,7 +307,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             String Email = LEmail.getText();
             String Address = LAddress.getText();
             
-            pst = con.prepareStatement("INSERT INTO librarian (ID,name,email,address)VALUES(?,?,?,?)");
+            pst = con.prepareStatement("INSERT INTO librarian (ID,name,email,address) VALUES (?,?,?,?)");
             
             pst.setString(1,librarianID);
             pst.setString(2,Name);
@@ -330,7 +330,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             String Email = LEmail.getText();
             String Address = LAddress.getText();
             
-            pst = con.prepareStatement("update libarian (studentid,studentname,email,address)VALUES(?,?,?,?)");
+            pst = con.prepareStatement("INSERT INTO librarian (studentid,studentname,email,address)VALUES(?,?,?,?)");
             
             pst.setString(1,librarianID);
             pst.setString(2,Name);
@@ -344,7 +344,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_LibIDActionPerformed
-
+                                                                                                                        
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
          try {
             String librarianID = LibID.getText();
@@ -352,7 +352,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             String Email = LEmail.getText();
             String Address = LAddress.getText();
             
-            pst = con.prepareStatement("update student set studentname= ?,email= ?,address= ? where studentid= ?");
+            pst = con.prepareStatement("UPDATE librarian SET name = ?, email = ?, address = ? WHERE ID = ?");
             
             
             pst.setString(1,librarianID);
@@ -365,7 +365,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
             LibData();
             
         } catch (SQLException ex) {
-            Logger.getLogger(StudentJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
                       
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -420,6 +420,7 @@ public class LibrarianJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new LibrarianJFrame().setVisible(true);
             }

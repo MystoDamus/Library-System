@@ -19,20 +19,20 @@ public class BookJFrame extends javax.swing.JFrame {
     /**
      * Creates new form BookJFrame
      */
-    public BookJFrame() {
-        initComponents();
-        Connect();
-        BookData();
-    }
+    MainJFrame mainFrame;
+    public BookJFrame(MainJFrame mainFrame) {
+    this.mainFrame = mainFrame;
+    initComponents();
+    Connect();
+    BookData();
+}
     
     
     
     Connection con;
     PreparedStatement pst;
 
-    BookJFrame(MainJFrame aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
     
      public void Connect(){
     
@@ -408,7 +408,7 @@ public class BookJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        new MainJFrame().setVisible(true);
+       mainFrame.setVisible(true); // reuse the original main frame
     dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -416,36 +416,25 @@ public class BookJFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BookJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BookJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BookJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BookJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BookJFrame().setVisible(true);
-            }
-        });
+    } catch (Exception ex) {
+        java.util.logging.Logger.getLogger(BookJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            MainJFrame dummyMain = new MainJFrame(); // Create a dummy main frame
+            new BookJFrame(dummyMain).setVisible(true);
+            dummyMain.setVisible(false); // Hide dummy if not needed
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;

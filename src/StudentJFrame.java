@@ -7,8 +7,7 @@
  *
  * @author Cy
  */
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.sql.*;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -27,7 +26,7 @@ public class StudentJFrame extends javax.swing.JFrame {
     public StudentJFrame() {
     initComponents(); // same as the auto-generated init method
 }
-    
+                                
     Connection con;
     PreparedStatement pst;
     
