@@ -175,7 +175,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      StudentJFrame studentFrame = new StudentJFrame(this); // pass this main frame
+    StudentJFrame studentFrame = new StudentJFrame(this); // pass this main frame
     studentFrame.setVisible(true);
     this.setVisible(false); 
     }//GEN-LAST:event_jButton2ActionPerformed
