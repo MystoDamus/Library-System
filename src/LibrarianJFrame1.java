@@ -17,16 +17,12 @@ import javax.swing.table.DefaultTableModel;
 
 public class LibrarianJFrame1 extends javax.swing.JFrame {
 
-    private MainJFrame mainFrame;
-    public LibrarianJFrame1(MainJFrame mainFrame) {
+    public LibrarianJFrame1() {
         initComponents();
         Connect();
         LibData();
     }
-    public LibrarianJFrame1() {
-    initComponents(); // same as the auto-generated init method
-}
-                                
+    
     Connection con;
     PreparedStatement pst;
     
@@ -36,9 +32,9 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/librarydb","root","");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrarianJFrame1.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrarianJFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -62,24 +58,17 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
             
             DFG.setRowCount(0);
              
-            while(Rs.next()){
-        
-            Vector v2 = new Vector();
-             
-            for(int aa=1; aa<=QQ; aa++){
-                 
-                v2.add(Rs.getString("lid"));
-                v2.add(Rs.getString("name"));
-                v2.add(Rs.getString("email"));
-                v2.add(Rs.getString("address"));
-             }
-             
-             DFG.addRow(v2);
-        
-        }
+            while(Rs.next()) {
+    Vector<String> v2 = new Vector<>();
+    v2.add(Rs.getString("lid"));
+    v2.add(Rs.getString("name"));
+    v2.add(Rs.getString("email"));
+    v2.add(Rs.getString("address"));
+    DFG.addRow(v2);
+}
           
         } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrarianJFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     
@@ -97,6 +86,7 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table1 = new javax.swing.JTable();
@@ -142,6 +132,8 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Cy\\Downloads\\nuLogo (3).png")); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -150,6 +142,8 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(195, 195, 195)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,6 +158,10 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
@@ -330,9 +328,10 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Record Deleted Successfully");
             LibData();
+            clearFields();
 
         } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrarianJFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -343,6 +342,11 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
             String name = txtLName.getText();
             String email = txtLEmail.getText();
             String address = txtLAddress.getText();
+            
+            if (lid.isEmpty() || name.isEmpty() || email.isEmpty() || address.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "All fields must be filled out", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return; // Stop execution if validation fails
+        }
 
             pst = con.prepareStatement("update librarian set name= ?,email= ?,address= ? where lid= ?");
 
@@ -354,65 +358,62 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Record Updated Successfully");
             LibData();
+            clearFields();
 
         } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LibrarianJFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        
         try {
-            String lid = txtLId.getText();
-            String name = txtLName.getText();
-            String email = txtLEmail.getText();
-            String address = txtLAddress.getText();
+        String lid = txtLId.getText();
+        String name = txtLName.getText();
+        String email = txtLEmail.getText();
+        String address = txtLAddress.getText();
 
-            pst = con.prepareStatement("INSERT INTO librarian (id,studentname,email,address)VALUES(?,?,?,?)");
-
-            pst.setString(1,lid);
-            pst.setString(2,name);
-            pst.setString(3,email);
-            pst.setString(4,address);
-
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Record Inserted Successfully");
-            LibData();
-        } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        // ✅ Input Validation
+        if (lid.isEmpty() || name.isEmpty() || email.isEmpty() || address.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "All fields must be filled out", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return; // Stop execution if validation fails
         }
 
-    }//GEN-LAST:event_btnInsertActionPerformed
+        pst = con.prepareStatement("INSERT INTO librarian (lid, name, email, address) VALUES (?, ?, ?, ?)");
 
+        pst.setString(1, lid);
+        pst.setString(2, name);
+        pst.setString(3, email);
+        pst.setString(4, address);
+
+        pst.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Record Inserted Successfully");
+        LibData();  // Refresh table
+        clearFields(); // Clear input fields
+    } catch (SQLException ex) {
+        Logger.getLogger(LibrarianJFrame1.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+        
+    }//GEN-LAST:event_btnInsertActionPerformed
+    public void clearFields() {
+    txtLId.setText("");
+    txtLName.setText("");
+    txtLEmail.setText("");
+    txtLAddress.setText("");
+}
     private void txtLEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLEmailActionPerformed
 
     private void txtLIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLIdActionPerformed
-        try {
-            String lid = txtLId.getText();
-            String name = txtLName.getText();
-            String email = txtLEmail.getText();
-            String address = txtLAddress.getText();
-
-            pst = con.prepareStatement("INSERT INTO student (lid,name,email,address)VALUES(?,?,?,?)");
-
-            pst.setString(1,lid);
-            pst.setString(2,name);
-            pst.setString(3,email);
-            pst.setString(4,address);
-
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Record Inserted Successfully");
-            LibData();
-        } catch (SQLException ex) {
-            Logger.getLogger(LibrarianJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_txtLIdActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-         new MainJFrame().setVisible(true);
-    dispose();
+           new MainJFrame().setVisible(true); // Open the main frame
+    this.dispose(); // Close the current frame // Close current frame
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
@@ -445,7 +446,7 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LibrarianJFrame().setVisible(true);
+                new LibrarianJFrame1().setVisible(true);
             }
         });
     }
@@ -462,6 +463,7 @@ public class LibrarianJFrame1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
