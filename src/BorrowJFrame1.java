@@ -116,6 +116,7 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
         DateChooser2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Borrow");
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -152,19 +153,19 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jButtonBackAction, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(194, 194, 194)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(168, 168, 168)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -191,12 +192,16 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table1);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("BId");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Student Name");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Book");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Date_Borrowed");
 
         txtBId.addActionListener(new java.awt.event.ActionListener() {
@@ -238,6 +243,7 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Date_Return");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -246,7 +252,7 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(109, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,30 +264,32 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtBook)
-                            .addComponent(txtBStudentName)
                             .addComponent(txtBId)
-                            .addComponent(DateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(DateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtBStudentName, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(4, 4, 4)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(DateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(144, 144, 144))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(DateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(153, 153, 153))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtBId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -289,12 +297,12 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtBStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtBook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel5))
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel4))
+                    .addComponent(txtBook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(DateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -306,8 +314,8 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -331,19 +339,72 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBookActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBookActionPerformed
+    public void clearFields() {
+    txtBId.setText("");
+    txtBStudentName.setText("");
+    txtBook.setText("");
+    
+}                    
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButtonBackActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionActionPerformed
+        new MainJFrame().setVisible(true); // Open the main frame
+    this.dispose(); // Close the current frame
+    }//GEN-LAST:event_jButtonBackActionActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        try {
+            String bid = txtBId.getText();
+            pst = con.prepareStatement("DELETE FROM borrow WHERE bid=?");
+            pst.setString(1,bid);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Record Deleted Successfully");
+            BorrowData();
+            clearFields();
+        } catch (SQLException ex) {
+            Logger.getLogger(BorrowJFrame1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        try {
+            String bid = txtBId.getText();
+            String studentname = txtBStudentName.getText();
+            String book= txtBook.getText();
+
+            pst = con.prepareStatement("UPDATE borrow SET studentname = ?, book = ?, date_borrowed = ?, date_return = ? WHERE bid = ?");
+
+            pst.setString(1,studentname);
+            pst.setString(2,book);
+            pst.setString(5,bid);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date_borrowed = sdf.format(DateChooser1.getDate());
+            String date_return = sdf.format(DateChooser2.getDate());
+            pst.setString(3,date_borrowed);
+            pst.setString(4,date_return);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Record Updated Successfully");
+            BorrowData();
+            clearFields();
+        } catch (SQLException ex) {
+            Logger.getLogger(BorrowJFrame1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         try {
             String bid = txtBId.getText();
             String studentname = txtBStudentName.getText();
             String book = txtBook.getText();
-            
-            
+
             pst = con.prepareStatement("INSERT INTO borrow (bid,studentname,book,date_borrowed,date_return)VALUES(?,?,?,?,?)");
-            
+
             pst.setString(1,bid);
             pst.setString(2,studentname);
             pst.setString(3,book);
@@ -352,26 +413,33 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
             String date_return = sdf.format(DateChooser2.getDate());
             pst.setString(4,date_borrowed);
             pst.setString(5,date_return);
-            
-            
+
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Record Inserted Successfully");
             BorrowData();
+            clearFields();
         } catch (SQLException ex) {
             Logger.getLogger(BorrowJFrame1.class.getName()).log(Level.SEVERE, null, ex);
         }
-                          
+
     }//GEN-LAST:event_btnInsertActionPerformed
+
+    private void txtBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBookActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBookActionPerformed
+
+    private void txtBStudentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBStudentNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBStudentNameActionPerformed
 
     private void txtBIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBIdActionPerformed
         try {
             String bid = txtBId.getText();
             String studentname = txtBStudentName.getText();
             String book = txtBook.getText();
-            
-            
+
             pst = con.prepareStatement("INSERT INTO student (studentid,studentname,email,address)VALUES(?,?,?,?)");
-            
+
             pst.setString(1,bid);
             pst.setString(2,studentname);
             pst.setString(3,book);
@@ -380,7 +448,7 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
             String date_return = sdf.format(DateChooser2.getDate());
             pst.setString(4,date_borrowed);
             pst.setString(5,date_return);
-            
+
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Record Inserted Successfully");
             BorrowData();
@@ -388,66 +456,6 @@ public class BorrowJFrame1 extends javax.swing.JFrame {
             Logger.getLogger(StudentJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtBIdActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-         try {
-            String bid = txtBId.getText();
-            String studentname = txtBStudentName.getText();
-            String book= txtBook.getText();
-            
-            
-            pst = con.prepareStatement("UPDATE borrow SET studentname = ?, book = ?, date_borrowed = ?, date_return = ? WHERE bid = ?");
-
-            
-            
-            pst.setString(1,studentname);
-            pst.setString(2,book);
-            pst.setString(5,bid);
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String date_borrowed = sdf.format(DateChooser1.getDate());
-            String date_return = sdf.format(DateChooser2.getDate());
-            pst.setString(3,date_borrowed);
-            pst.setString(4,date_return);
-            
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Record Updated Successfully");
-            BorrowData();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(BorrowJFrame1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                      
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try {
-            String bid = txtBId.getText();
-            pst = con.prepareStatement("DELETE FROM borrow WHERE bid=?");
-            pst.setString(1,bid);
-            
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Record Deleted Successfully");
-            BorrowData();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(BorrowJFrame1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-          
-    }//GEN-LAST:event_btnDeleteActionPerformed
-                    
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void txtBStudentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBStudentNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBStudentNameActionPerformed
-
-    private void jButtonBackActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionActionPerformed
-        new MainJFrame().setVisible(true); // Open the main frame
-    this.dispose(); // Close the current frame
-    }//GEN-LAST:event_jButtonBackActionActionPerformed
 
     /**
      * @param args the command line arguments
