@@ -227,7 +227,7 @@ public class LoginJFrame extends javax.swing.JFrame {
         if (rs.next()) {
             
             new MainJFrame().setVisible(true);
-            this.dispose(); // close the login form
+            this.dispose(); 
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password");
         }

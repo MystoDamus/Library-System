@@ -213,9 +213,9 @@ public class UserRegistration extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, "User Registered Successfully");
 
-        // After successful registration, close this window and go back to Login
+       
         new LoginJFrame().setVisible(true);
-        this.dispose(); // close the Register window
+        this.dispose(); 
 
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
